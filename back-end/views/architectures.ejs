@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <% for (var i = 0; i < architectures.length; i++) { %>
+      <p><%= architectures[i].name %></p>
+      <input type="text" value="comment" name="comment">
+      <form action="/architecture/<%= architectures[i]._id %>/new/comment" method="POST">
+        <button type="submit" name="editButton">Edit</button>
+      </form>
+      <a href="">add comment</a>
+    <% } %>
+  </body>
+</html>

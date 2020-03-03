@@ -1,0 +1,157 @@
+$sandyRose: #EEE5DC;
+$mutedSteel: #635E5E;
+
+$largeMargin: 30px;
+$baseMargin: 10px;
+
+$h1FontSize: 25px;
+$h2FontSize: 23px;
+$menuFontSize: 25px;
+
+$desktopWidth: 830px;//768px;
+
+body {
+    font-family: 'Cormorant Garamond', sans-serif;
+    background-color: $sandyRose;
+    font-size: 3.7vw;
+} 
+
+.linkText {
+    text-decoration: none;
+    color: black;
+    padding-right: 30px;
+    padding-bottom: -50px;
+    line-height: -1vw;
+}
+
+.linkText:hover {
+    background-color: black;
+    color: white;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.container {
+    margin: 0 4vw;
+    margin-top: $largeMargin;
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+p, h2, ul {
+    margin-top: $baseMargin;
+}
+
+h1 {
+    font-size: $h1FontSize;
+}
+
+h1 {
+    font-size: 4vw;
+}
+
+h2 {
+    font-size: 3.5vw;
+}
+
+// about
+$aboutImgHeightMbl: 550px;
+$aboutImgWidthMbl: 400px;
+
+$aboutImgHeightDsktp: 750px;
+$aboutImgWidthDsktop: 600px;
+
+#aboutImage {
+    width: $aboutImgWidthMbl;
+    height: $aboutImgHeightMbl;
+    object-fit: cover;
+    position: absolute;
+    right: 0;
+}
+
+#aboutTextCon {
+    display: block;
+    position: absolute;
+    margin-top: $aboutImgHeightMbl;
+    width: $aboutImgWidthMbl;
+}
+
+// hr 
+.left {
+    width: 100vw;
+    margin-left: 20vw;
+}
+
+.right {
+    width: 100vw;
+    margin-left: -20vw;
+}
+
+// footer
+footer {
+    margin-top: 20px;
+    background-color: $sandyRose;
+    // position: absolute;
+    bottom: 0;
+    margin-left: 2vw;
+    font-size: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rightFooter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    a {
+        text-decoration: none;
+        color: black;
+        cursor: unset;
+        margin-right: 5px;
+    }
+    i {
+        cursor: pointer;
+    }
+    .linkText {
+        margin-right: 1px;
+    }
+}
+// desktop 
+@media screen and (min-width: $desktopWidth) {
+    body {
+        font-size: 28px;
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+
+    h2 {
+        font-size: 38px;
+    }
+
+    #aboutImage {
+        width: $aboutImgWidthDsktop;
+        height: $aboutImgHeightDsktp;
+        right: 5vw;
+    }
+
+    #aboutTextCon {
+        display: block;
+        position: absolute;
+        margin-top: $aboutImgHeightDsktp / 4;
+        width: $aboutImgWidthDsktop / 1.5;
+        margin-left: 30%;
+        hr {
+            margin-left: 2px;
+            width: $aboutImgWidthDsktop / 1.5;
+        }
+    }
+}
