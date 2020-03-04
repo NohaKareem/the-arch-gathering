@@ -64,9 +64,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Log In', message: req.flash('message') }); //~login form
 });
 
-router.get('/register', function(req, res, next) {
-  res.render('register_form', { title: 'Register', message: req.flash('message') });//~register form
-});
+// router.get('/register', function(req, res, next) {
+//   res.render('register_form', { title: 'Register', message: req.flash('message') });//~register form
+// });
 
 // router.get('/home', function(req, res, next) {
 //   res.send('logged in!');

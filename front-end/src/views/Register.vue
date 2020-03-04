@@ -4,7 +4,7 @@
         <img src="static/login.jpg" alt="login image" class="loginImage">
         <div class="overlay register">
             <h1 class="overlayText">Reg<span class="contrast">ister</span></h1>
-            <form action="http://localhost:3000/register" method="post">
+            <form action="http://localhost:3000/register" method="post" class="registrationForm">
                 <input type="text" name="email" placeholder="email"> 
                 <br>
                 <input type="text" name="username" placeholder="username"> 
@@ -25,7 +25,7 @@
 
 <script>
     export default {
-      name: "Logiin"
+      name: "Register"
     }
 </script>
 

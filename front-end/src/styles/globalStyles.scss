@@ -152,9 +152,20 @@ footer {
     .registerCon, .overlay {
         margin-left: calc(15px + 45vw); /*~var*/
     }
+    
     .registerCon {
        margin-bottom: 40px;
     }
+
+    .registrationForm input[type=text], .registrationForm input[type=password] {
+        border-left: solid 1px black;
+        border-bottom: solid 1px black;
+    }
+
+    .registrationForm input[type=submit] {
+        padding-right: 6vw;
+    }
+    
     .overlay {
         position: absolute;
         margin-top: -60vh;
@@ -171,11 +182,12 @@ footer {
             margin-bottom: 10px;
             border: none;
             padding: 5px;
-            background-color: $sandyRose; /*~var*/
+            background-color: $sandyRose; 
         }
 
         input[type=submit] {
             cursor: pointer;
+            font-family: 'Cormorant Garamond', sans-serif;
         }
         
         input[type=submit]:hover {
@@ -187,16 +199,13 @@ footer {
             color: black;
             // margin-bottom: 5vw;
             /* margin-left: -5px; */
-            border-bottom: 1vw black solid; /*~var*/ 
+            border-bottom: 1vw black solid; 
         }
     }
 
     .overlay.register {
         margin-top: -60vh;
-        
-        // .registerCon, .overlay {
-            margin-left: calc(15px + 44vw); /*~var*/
-        // }
+        margin-left: calc(15px + 44vw); 
     }
     
   
