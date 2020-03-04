@@ -131,6 +131,52 @@ footer {
         margin-right: 1px;
     }
 }
+
+// registration + login forms
+.overlayCon {
+    position: relative;
+
+    form {
+        margin-top: -20px;
+    }
+
+    .loginImage {
+        margin-left: 20px;
+        margin-top: 10px;
+        width: 70vw;
+        height: 90vh;
+        object-fit: cover;
+        /* height: 100px; */
+    }
+    
+    .overlay {
+        position: absolute;
+        margin-top: -40vh;
+        margin-left: calc(15px + 54vw); /*~var*/
+        /*~overlay text && input */
+        .overlayText {
+            font-size: 10vw;
+            color: $sandyRose;
+            /* text-decoration: underline; */
+            border-bottom: 1vw $sandyRose solid;
+        }
+    
+        input{
+            margin-bottom: 10px;
+            border: none;
+            padding: 5px;
+            background-color: #EEE5DC; /*~var*/
+        }
+    }
+    
+    .contrast {
+        color: black;
+        /* margin-left: -5px; */
+        border-bottom: 1vw black solid; /*~var*/ 
+    }
+}
+
+
 // desktop 
 @media screen and (min-width: $desktopWidth) {
     body {

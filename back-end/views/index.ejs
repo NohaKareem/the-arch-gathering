@@ -9,7 +9,23 @@
     <% if (message != null) { %>
       <%= message %>
     <% } %>
-    <form action="login" method="post">
+
+    <div class="overlayCon">
+      
+    </div>
+    <img src="login.jpg" alt="login image" class="loginImage">
+      <div class="overlay">
+          <h1 class="overlayText">Log<span class="contrast">in</span></h1>
+          <form action="login" method="post">
+              <input type="text" placeholder="username"> 
+              <br>
+              <input type="text" placeholder="password">
+              <input type="submit" value="Log In">
+          </form>
+      </div>
+      new? <a href="register">register</a>
+
+    <!-- <form action="login" method="post">
         <label for="username">Username:</label> 
         <input type="text" name="username" id="username">
           
@@ -20,7 +36,6 @@
         <input type="password" name="password" id="password">
         <br>
         <input type="submit" value="Log In">
-    </form>
-    <a href="register">Register</a>
+    </form> -->
   </body>
 </html>

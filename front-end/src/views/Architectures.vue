@@ -21,7 +21,7 @@
       name: "Architectures",
       data() {
         return {
-          loadPage: false,
+          loadPage: true,
           architectures: {}
         }
       },
@@ -31,15 +31,14 @@
         // get all architectures
         axios.get('http://localhost:3000/api/architectures')
           .then(function(response) {
-            
-            if(!response.data.name) {
-              self.loadPage = false;
-              document.querySelector('.container').innerHTML = response.data;
-            }
-            else {
+            // if(!response.data.name) {
+            //   self.loadPage = false;
+            //   document.querySelector('.container').innerHTML = response.data;
+            // }
+            // else {
               self.loadPage = true;
               self.architectures = response.data;
-            }           
+            // }           
           })
           .catch(function(error) {
             console.error(error);
@@ -79,7 +78,6 @@
 
   @media screen and (min-width: $desktopWidth) {
     .architectureListCon {
-      display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
             
       .architectureCon {

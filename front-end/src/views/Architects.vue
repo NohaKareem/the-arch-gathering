@@ -3,10 +3,11 @@
     <div class="architectCon" v-for="architect in architects" :key="architect._id">
       <h1>{{ architect.first_name }} {{ architect.last_name }}</h1>
       <p>{{ architect.bio }}</p>
-      <h2>Architecture:</h2>
-      <ul>
-        <li v-for="architecture in architectures" :key="architecture._id">
-          {{ architecture.name }}
+      <h2 v-if="displayArchitectures">Architecture:</h2>
+      <ul v-if="displayArchitectures">
+        <li v-for="architecture in architectures[architect._id]" :key="architecture._id">
+          <!-- {{architectures}} -->
+          <router-link :to="`/architectures/${architecture._id}`" class="linkText">{{ architecture.name }}</router-link>
         </li>
       </ul>
     </div>
@@ -20,7 +21,8 @@
       data() {
         return {
           architects: {}, 
-          architectures: {}
+          architectures: [], 
+          displayArchitectures: false
         }
       },
       created: function() {
@@ -37,7 +39,9 @@
               let architectId = architect._id;
               axios.get(`http://localhost:3000/api/architects/${architectId}/architectures`)
                 .then(function(response) {
-                  self.architectures = response.data;
+                  self.architectures[architect._id] = response.data;
+                  self.displayArchitectures = true;
+                  // console.log(self.architectures[architect._id])
                 })
                 .catch(function(error) {
                   console.error(error);
