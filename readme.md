@@ -5,7 +5,7 @@ The Arch Gathering, is a digital publication celebrating beautiful architecture.
 Built as an integrated assignment for courses 6003 and 6007.
 
 ## notes
-* login, registration and about pages are rendered in ejs, available in the back-end folder, and sent to the front-end for display (using sendFile)
+* about page is rendered in ejs - available in the back-end folder - and sent to the front-end for display (using sendFile())
 
 ## project run
 * in back-end server (/back-end)
@@ -14,7 +14,7 @@ Built as an integrated assignment for courses 6003 and 6007.
 * for front-end, run ```vue ui```, import the /front-end folder and run the server
 
 ## helpful resources
-* vue transitions https://medium.com/vue-mastery/how-to-create-vue-js-transitions-6487dffd0baa
+* vue transitions https://medium.com/vue-mastery/how-to-create-vue-js-transitions-6487dffd0baa and https://medium.com/javascript-in-plain-english/how-you-can-use-vue-transitions-right-now-a-beginners-tutorial-71860a555d46
 * res.sendFile pathing https://stackoverflow.com/a/25463996/1446598
 * on debugging sessions https://stackoverflow.com/questions/36486397/passport-login-and-persisting-session
 * connecting front-end and back-end to passport https://blog.zairza.in/oauth-using-mevn-stack-4b4a383dae08

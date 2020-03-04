@@ -1,22 +1,25 @@
 <template>
   <div class="container">
-    <login v-if="!loggedIn"/>
-    <div class="architectureListCon" v-else>
-      <div class="architectureCon" v-for="architecture in architectures" :key="architecture._id">
-        
-        <transition name="hoverImage">
-          <router-link :to="`/architectures/${architecture._id}`" class="linkImage">
-            <img :src="`/static/${architecture.image}`" :alt="`${architecture.name} image`" class="listThumb">
-          </router-link>
-        </transition>
+      <transition name="appearTransition" appear>
+        <div class="architectureListCon" v-if="loggedIn">
+          <div class="architectureCon" v-for="architecture in architectures" :key="architecture._id">
+            <!-- <transition-group name="appearTransition" tag="a" appear> -->
+              <!-- <transition name="hoverImage"> -->
+                <router-link :to="`/architectures/${architecture._id}`" class="linkImage">
+                  <img :src="`/static/${architecture.image}`" :alt="`${architecture.name} image`" class="listThumb" @mouseover="enableTransitions()">
+                </router-link>
+              <!-- </transition> -->
 
-        <p class="architectureName">
-            <router-link :to="`/architectures/${architecture._id}`" class="linkText">
-                {{ architecture.name }}
-            </router-link>
-        </p>
-      </div>
-    </div>
+              <p class="architectureName">
+                  <router-link :to="`/architectures/${architecture._id}`" class="linkText">
+                      {{ architecture.name }}
+                  </router-link>
+              </p>
+            <!-- </transition-group> -->
+          </div>
+        </div>
+        <login v-else/>
+      </transition>
   </div>
 </template>
 
@@ -30,7 +33,8 @@
         return {
           loadPage: true,
           architectures: {}, 
-          loggedIn: false
+          loggedIn: false, 
+          applyTransitions: false
         }
       },
       created: function() {
@@ -57,6 +61,11 @@
           .catch(function(error) {
             console.error(error);
           });
+      }, 
+      methods: {
+        enableTransitions: function() {
+          this.applyTransitions = true;
+        }
       }
     }
 </script>
@@ -91,26 +100,40 @@
       object-fit: cover;
   }
 
+  .listThumb:hover {
+    filter: grayscale(90%);
+  }
+
   // .architectureListCon:last-child {
   // }
 
+
+
   // transitions
-  .hoverImage-enter, .hoverImage-leave-to {
-    filter: grayscale(0%);
-      // opacity: 0;
-      // transform: rotateY(50deg);
-  }
+  .appearTransition-enter-active, .appearTransition-leave-active {
+  transition: all 2s ease-in-out;//steps(3,start);
+}
+.appearTransition-enter, .appearTransition-leave-to {
+  opacity: 0;
+  filter: grayscale(100%);
+}
+.appearTransition-enter-to, .appearTransition-leave {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+  // .hoverImage-enter, .hoverImage-leave-to {
+  //   filter: grayscale(0%);
+  //     // opacity: 0;
+  //     // transform: rotateY(50deg);
+  // }
 
-  .hoverImage-enter-to, .hoverImage-leave {
-    filter: grayscale(90%);
-    // opacity: 1;
-    // transform: rotateY(0deg);
-  }
+  // .hoverImage-enter-to, .hoverImage-leave {
+  //   filter: grayscale(90%);
+  // }
 
-  .hoverImage-enter-active, .hoverImage-leave-active {
-    transition: filter 300ms ease-in;
-    // transition: opacity, transform 200ms ease-out;
-  }
+  // .hoverImage-enter-active, .hoverImage-leave-active {
+  //   transition: filter 300ms ease-in;
+  // }
 
   @media screen and (min-width: $desktopWidth) {
     .architectureListCon {

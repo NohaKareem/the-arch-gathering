@@ -1,14 +1,10 @@
 <template>
   <div id="app">
     <header>
-      <!-- <router-link to="/"> -->
-        <img id="logo" src="/logo.svg" alt="The Arch Gathering logo">
-      <!-- </router-link>~component cond stylng -->
+      <img id="logo" src="/logo.svg" alt="The Arch Gathering logo">
       <nav>
-        <transition name="fade">  
-          <router-link to="/architectures" class="linkText">architecture</router-link>
-        </transition>
-        <router-link to="/architects" class="linkText">architects</router-link>
+        <router-link to="/architectures" class="linkText">architecture</router-link>
+        <router-link to="/architects" class="linkText" @click="animate = true">architects</router-link>
         <router-link to="/api" class="linkText">API</router-link>
         <router-link to="/about" class="linkText">about</router-link>
       </nav>
@@ -32,7 +28,7 @@
 
 <script>
     export default {
-      name: "App",
+      name: "App"
     }
 </script>
 
@@ -47,11 +43,4 @@
       max-width: 60vw;
     }
   }
-
-  .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
 </style>
