@@ -16,8 +16,6 @@ var expressSession = require('express-session');
 // passport 
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var FACEBOOK_APP_ID = '1699158153703160';
-var FACEBOOK_APP_SECRET = '88d2e6724b1feaa30629bd08feb09554';
 
 var favicon = require('serve-favicon');
 
@@ -68,8 +66,8 @@ app.use(flash());
 
 // facbeook
 passport.use(new FacebookStrategy({
-  clientID: FACEBOOK_APP_ID,
-  clientSecret: FACEBOOK_APP_SECRET,
+  clientID: dbAuth.FACEBOOK_APP_ID,
+  clientSecret: dbAuth.FACEBOOK_APP_SECRET,
   callbackURL: 'http://localhost:3000/auth/facebook/callback',
   profileFields: ['id','displayName','photos']
 }, function(accessToken, refreshToken, profile, done) {
