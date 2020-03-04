@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var ArchitectureSchema = mongoose.Schema({
     name: String, 
-    address: String, //~
+    // address: String, 
     location_city: String, 
     image: String,
     architects: [{

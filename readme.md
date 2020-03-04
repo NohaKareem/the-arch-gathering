@@ -9,6 +9,7 @@ The app uses the MEVN stack, and passport local and facebook authentication stra
 
 ## notes
 * about page is rendered in ejs - available in the back-end folder - and sent to the front-end for display (using sendFile())
+* add comment and add to favorites features are not fully functional
 
 ## project run
 * in back-end server (/back-end)

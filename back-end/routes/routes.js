@@ -28,7 +28,8 @@ router.post('/architecture/:id/new/comment', function(req, res, next) {
     });
     
     console.log(allComments);
-      // add comment
+      
+    // add comment
     let updateQuery = Architecture.findOneAndUpdate({ _id: req.params.id },
         { comments: allComments });
         updateQuery.exec((err, response) => {

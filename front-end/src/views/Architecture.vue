@@ -4,8 +4,8 @@
 
     <div class="detailsCon" v-else>
         <h2 class="italic">{{ architecture.name }}</h2>
-        <p v-for="architect in architecture.architects" :key="architect">
-            <!-- {{architect.first_name}} -->
+        <p v-for="architect in architects" :key="architect">
+            {{ architect.first_name }} {{ architect.last_name }}
         </p>
         <p>{{ architecture.year }} · {{ architecture.location_city }}</p>
         <hr>
@@ -14,19 +14,17 @@
         <div class="commentSection">
             <h3 class="italic">Conversation</h3>
             comments
-            <h2> Add a comment</h2>
+            <h3 class="addCommentHeading"> Add a comment</h3>
             <form :action="`/architecture/${architecture._id}/new/comment`" ref="addComment" method="post" enctype="multipart/form-data">
                 <textarea name="comment" id="commentTextArea" cols="50" rows="10" placeholder="type your comment here"></textarea>
                 <button type="button" class="linkText" id="commentButton" @click="addComment()">
-                    <!-- <router-link to="#" class="linkText" id="commentButton"> -->
                     +add comment 
-                    <!-- </router-link> -->
                 </button>
            </form>
         </div>
     </div>
     <div class="imageCon">
-        <div class="addToFavesButton">
+        <div class="addToFavesButton" @click="addToFaves()">
             <hr>
                 <router-link to="#">
                     +
@@ -102,6 +100,35 @@
                         console.error(error);
                         this.$errors = error.reponse.data.errors; 
                     });
+          }, 
+          addToFaves(){
+            //    const formData = new FormData(this.$refs.addComment);
+                let self = this;
+                let userId;
+
+                // get user id
+                axios.get(`/users/getUserId`)
+                    .then(response => {
+                        console.log(response.data)
+                        userId = response.data.user;
+                    }).catch(error => {
+                        console.error(error);
+                        this.$errors = error.reponse.data.errors; 
+                });
+                
+                console.log('user id is' + userId);
+
+                // save architecture to favorites
+                if (userId) {
+                    axios.post(`/users/${userId}/add/architecture/${self.architecture._id}`)
+                        .then(response => {
+                            console.log('added architecture');
+                            console.log(response.data);
+                        }).catch(error => {
+                            console.error(error);
+                            this.$errors = error.reponse.data.errors; 
+                        });
+                }
           }
       }
     }
@@ -142,6 +169,10 @@
         width: 55vw;
         height: 65vw;
         object-fit: cover;
+    }
+
+    .addCommentHeading {
+        margin-top: 10px;
     }
 
     // add to favorites
@@ -196,6 +227,8 @@
         background-color: $sandyRose;
         font-family: 'Cormorant Garamond', sans-serif;
         font-size: 20px;
+        cursor: pointer;
+        margin-bottom: 30px;
     }
 
     #commentButton:hover {
