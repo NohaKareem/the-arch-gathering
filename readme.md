@@ -12,3 +12,6 @@ Built as an integrated assignment for courses 6003 and 6007.
     * run ```npm install``` 
     * run ```npm run dev```
 * for front-end, run ```vue ui```, import the /front-end folder and run the server
+
+## helpful resources
+* vue transitions https://medium.com/vue-mastery/how-to-create-vue-js-transitions-6487dffd0baa

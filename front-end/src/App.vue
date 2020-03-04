@@ -5,9 +5,9 @@
         <img id="logo" src="/logo.svg" alt="The Arch Gathering logo">
       <!-- </router-link>~component cond stylng -->
       <nav>
-        <!-- <transition name="fade">   -->
+        <transition name="fade">  
           <router-link to="/architectures" class="linkText">architecture</router-link>
-        <!-- </transition> -->
+        </transition>
         <router-link to="/architects" class="linkText">architects</router-link>
         <router-link to="/api" class="linkText">API</router-link>
         <router-link to="/about" class="linkText">about</router-link>
@@ -48,10 +48,10 @@
     }
   }
 
-//   .fade-enter-active, .fade-leave-active {
-//   transition: opacity .5s;
-// }
-// .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-//   opacity: 0;
-// }
+  .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

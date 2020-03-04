@@ -32,7 +32,7 @@ body {
 
 .linkText:hover {
     background-color: black;
-    color: white;
+    color: $sandyRose;
 }
 
 .italic {
@@ -148,7 +148,7 @@ footer {
         object-fit: cover;
         /* height: 100px; */
     }
-    
+
     .overlay {
         position: absolute;
         margin-top: -40vh;

@@ -2,9 +2,13 @@
   <div class="container">
     <div class="architectureListCon" v-if="loadPage">
       <div class="architectureCon" v-for="architecture in architectures" :key="architecture._id">
-        <router-link :to="`/architectures/${architecture._id}`" class="linkImage">
-          <img :src="`/static/${architecture.image}`" :alt="`${architecture.name} image`" class="listThumb">
-        </router-link>
+        
+        <transition name="hoverImage">
+          <router-link :to="`/architectures/${architecture._id}`" class="linkImage">
+            <img :src="`/static/${architecture.image}`" :alt="`${architecture.name} image`" class="listThumb">
+          </router-link>
+        </transition>
+
         <h1>
             <router-link :to="`/architectures/${architecture._id}`" class="linkText">
                 {{ architecture.name }}
@@ -75,6 +79,24 @@
 
   // .architectureListCon:last-child {
   // }
+
+  // transitions
+  .hoverImage-enter, .hoverImage-leave-to {
+    filter: grayscale(0%);
+      // opacity: 0;
+      // transform: rotateY(50deg);
+  }
+
+  .hoverImage-enter-to, .hoverImage-leave {
+    filter: grayscale(90%);
+    // opacity: 1;
+    // transform: rotateY(0deg);
+  }
+
+  .hoverImage-enter-active, .hoverImage-leave-active {
+    transition: filter 300ms ease-in;
+    // transition: opacity, transform 200ms ease-out;
+  }
 
   @media screen and (min-width: $desktopWidth) {
     .architectureListCon {

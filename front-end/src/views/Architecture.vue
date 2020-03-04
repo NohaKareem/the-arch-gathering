@@ -2,7 +2,9 @@
   <div class="container">
     <div class="detailsCon">
         <h2 class="italic">{{ architecture.name }}</h2>
-        <p v-for="architect in architecture.architects" :key="architect"></p>
+        <p v-for="architect in architecture.architects" :key="architect">
+            <!-- {{architect.first_name}} -->
+        </p>
         <p>{{ architecture.year }} · {{ architecture.location_city }}</p>
         <hr>
         <p>{{ architecture.description }}</p>
@@ -11,10 +13,14 @@
             <h3 class="italic">Conversation</h3>
             ~comments
             <h2> Add a comment~</h2>
-            <textarea name="comment" id="commentTextArea" cols="50" rows="10" placeholder="type your comment here"></textarea>
-            <router-link to="#" class="linkText" id="commentButton">
-                +add comment ~
-            </router-link>
+            <form :action="`/architecture/${architecture._id}/new/comment`" ref="addComment" method="post" enctype="multipart/form-data">
+                <textarea name="comment" id="commentTextArea" cols="50" rows="10" placeholder="type your comment here"></textarea>
+                <button type="button" class="linkText" id="commentButton" @click="addComment()">
+                    <!-- <router-link to="#" class="linkText" id="commentButton"> -->
+                    +add comment ~
+                    <!-- </router-link> -->
+                </button>
+           </form>
         </div>
     </div>
     <div class="imageCon">
@@ -50,11 +56,12 @@
           .then(function(response) {
             //   console.log(response.data)
             self.architecture = response.data[0];
-
-            console.log(self.architecture.architects)
+            
+            // console.log(response.data[0].architects)
             // get all architects for an architecture piece
             self.architecture.architects.forEach(architectId => {
                 console.log(architectId)
+                console.log('id')
                 axios.get(`http://localhost:3000/api/architects/${architectId}`)
                     .then(function(response) {
                         console.log(response.data);
@@ -68,6 +75,22 @@
           .catch(function(error) {
             console.error(error);
           });
+      }, 
+      methods: {
+          addComment() {
+                console.log('in add comment')
+                const formData = new FormData(this.$refs.addComment);
+                console.log(formData);
+                let self = this;
+                axios.post(`/architecture/${self.architecture._id}/new/comment`, formData)
+                    .then(response => {
+                        console.log('added comment');
+                        console.log(response.data);
+                    }).catch(error => {
+                        console.error(error);
+                        this.$errors = error.reponse.data.errors; 
+                    });
+          }
       }
     }
 </script>
@@ -126,6 +149,14 @@
     #commentButton {
         display: block;
         width: auto;
+        border: none;
+        background-color: $sandyRose;
+        font-family: 'Cormorant Garamond', sans-serif;
+        font-size: 20px;
+    }
+
+    #commentButton:hover {
+        background-color: black;
     }
 
     #commentTextArea {
