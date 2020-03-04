@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div class="architectureListCon" v-if="loadPage">
+    <login v-if="!loggedIn"/>
+    <div class="architectureListCon" v-else>
       <div class="architectureCon" v-for="architecture in architectures" :key="architecture._id">
         
         <transition name="hoverImage">
@@ -20,26 +21,35 @@
 </template>
 
 <script>
+    import Login from "./Login.vue";
     import axios from "axios";
     export default {
       name: "Architectures",
+      components: { 'login': Login },
       data() {
         return {
           loadPage: true,
-          architectures: {}
+          architectures: {}, 
+          loggedIn: false
         }
       },
       created: function() {
         var self = this;
 
         // get all architectures
-        axios.get('http://localhost:3000/api/architectures')
+        axios.get('http://localhost:3000/api/architectures', {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true
+        })
           .then(function(response) {
             // if(!response.data.name) {
             //   self.loadPage = false;
             //   document.querySelector('.container').innerHTML = response.data;
             // }
             // else {
+              // if server sends a message (requiring login), mark loggedIn as false
+              self.loggedIn = (response .data.msg) ? false : true;
+              console.log(response.data)
               self.loadPage = true;
               self.architectures = response.data;
             // }           

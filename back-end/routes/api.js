@@ -6,11 +6,14 @@ var Architecture = require('../models/Architecture.js');
 var Architect = require('../models/Architect.js');
 var User = require('../models/User.js');
 
+const LOGIN_ROUTE = 'http://localhost:8080/#/login';//'api/architectures'; // redirect to front-end index
+
 function isLoggedIn(req, res, next) {
-	if(req.user) {
+	if(req.user) {//isAuthenticated()
 		return next();
-	}
-  return res.redirect('/');
+  }
+  return  res.json({ msg: 'need to login' });
+  // return res.redirect(LOGIN_ROUTE); //~ '/'
   // res.sendFile((path.join(__dirname, '../views', 'index.ejs')));
 }
 
@@ -30,20 +33,20 @@ router.get('/architectures/:id', isLoggedIn, function(req, res, next) {
   });
 });
 
-// GET one architect with given id
-router.get('/architects/:id', isLoggedIn, function(req, res, next) {
-  Architect.find({ _id: req.params.id }, (err, architect) => {
-    handleErr(err);
-    res.json(architect);
-  });
-});
-
 // GET all architects
 router.get('/architects', isLoggedIn, function(req, res, next) {
   Architect.find((err, architects) => {
     handleErr(err);
     res.json(architects);
   }).sort({ first_name: 'asc' });
+});
+
+// GET one architect with given id
+router.get('/architects/:id', isLoggedIn, function(req, res, next) {
+  Architect.find({ _id: req.params.id }, (err, architect) => {
+    handleErr(err);
+    res.json(architect);
+  });
 });
 
 // GET all architectures by an architect

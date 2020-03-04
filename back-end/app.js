@@ -25,6 +25,20 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+// allowing cors, from https://github.com/rkpattnaik780/passport-mevn-app/blob/master/server/app.js
+var corsOption = {
+  origin: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  exposedHeaders: ["x-auth-token", "refresh-token"],
+  credentials: true
+};
+
+var cors = require("cors");
+// app.use(cors());
+app.use(cors(corsOption));
+app.use(cors())
+
 // use mongoose
 mongoose.set('useFindAndModify', false);
 mongoose.set('useUnifiedTopology', true); 
@@ -39,8 +53,13 @@ function(err) {
 	}
 });
 
-app.use(expressSession({ secret: 'sessionEncryptionKey', resave: false, 
-  saveUninitialized: true, key: 'sid' }));
+// sessions https://stackoverflow.com/a/51540685
+app.use(expressSession({ secret: 'sessionEncryptionKey', 
+  resave: true,//false, 
+  saveUninitialized: true, 
+  
+  // cookie: { secure: true }
+  key: 'sid' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

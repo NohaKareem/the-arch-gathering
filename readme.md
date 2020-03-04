@@ -17,3 +17,4 @@ Built as an integrated assignment for courses 6003 and 6007.
 * vue transitions https://medium.com/vue-mastery/how-to-create-vue-js-transitions-6487dffd0baa
 * res.sendFile pathing https://stackoverflow.com/a/25463996/1446598
 * on debugging sessions https://stackoverflow.com/questions/36486397/passport-login-and-persisting-session
+* connecting front-end and back-end to passport https://blog.zairza.in/oauth-using-mevn-stack-4b4a383dae08

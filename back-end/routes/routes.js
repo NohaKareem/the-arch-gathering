@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Architecture = require('../models/Architecture.js');
 var User = require('../models/User.js');
 
-const AUTH_ROUTE = 'api/architectures';
+const AUTH_ROUTE = 'http://localhost:8080/';//'api/architectures'; // redirect to front-end index
 
 // GET about page
 router.get('/about', function(req, res, next) {
@@ -90,7 +90,7 @@ router.post('/register', function(req, res, next) {
 
 		function(err, user) {
       if (err) {
-        res.render('register_form', {title: 'Register', user:user, message: req.flash('message') });
+        res.render('register_form', {title: 'Register', user:user, message: req.flash('message') });//~
       }
       
       // automatically logs in any new user
@@ -99,6 +99,19 @@ router.post('/register', function(req, res, next) {
         return next();
       });
     });
+});
+
+// checking if user is registered. test method from https://blog.zairza.in/oauth-using-mevn-stack-4b4a383dae08
+router.get("/check", (req, res) => {
+  console.log("user - " + req.user);
+  console.log(req.session.passport);
+  if (req.user === undefined) {
+    res.json({});
+  } else {
+    res.json({
+      user: req.user
+    });
+  }
 });
 
 // helper method

@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <div class="detailsCon">
+    <login v-if="!loggedIn"/>
+
+    <div class="detailsCon" v-else>
         <h2 class="italic">{{ architecture.name }}</h2>
         <p v-for="architect in architecture.architects" :key="architect">
             <!-- {{architect.first_name}} -->
@@ -39,21 +41,30 @@
 </template>
 
 <script>
+    import Login from "./Login.vue";
     import axios from "axios";
     export default {
       name: "Architectures",
+      components: {'login': Login },
       data() {
         return {
           architecture: {}, 
-          architects: []
+          architects: [],
+          loggedIn: false
         }
       },
       created: function() {
         var self = this;
 
         // get all architectures
-        axios.get(`http://localhost:3000/api/architectures/${this.$route.params.id}`)
+        axios.get(`http://localhost:3000/api/architectures/${this.$route.params.id}`,  {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true
+        })
           .then(function(response) {
+            // if server sends a message (requiring login), mark loggedIn as false
+            self.loggedIn = (response .data.msg) ? false : true;
+            
             //   console.log(response.data)
             self.architecture = response.data[0];
             

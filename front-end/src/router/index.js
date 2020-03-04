@@ -12,7 +12,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/", 
-    redirect: "/login"//architectures
+    redirect: "/architectures"//login
   },
   {
     path: "/architectures",
