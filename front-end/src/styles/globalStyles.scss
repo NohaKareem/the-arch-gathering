@@ -152,9 +152,12 @@ footer {
     .registerCon, .overlay {
         margin-left: calc(15px + 45vw); /*~var*/
     }
+    .registerCon {
+       margin-bottom: 40px;
+    }
     .overlay {
         position: absolute;
-        margin-top: -40vh;
+        margin-top: -60vh;
 
         .overlayText {
             font-size: 10vw;
@@ -186,6 +189,14 @@ footer {
             /* margin-left: -5px; */
             border-bottom: 1vw black solid; /*~var*/ 
         }
+    }
+
+    .overlay.register {
+        margin-top: -60vh;
+        
+        // .registerCon, .overlay {
+            margin-left: calc(15px + 44vw); /*~var*/
+        // }
     }
     
   
@@ -221,6 +232,13 @@ footer {
         hr {
             margin-left: 2px;
             width: $aboutImgWidthDsktop / 1.5;
+        }
+    }
+
+    // register + login 
+    .overlay.register {
+        form {
+            margin-left: 18vw;
         }
     }
 }

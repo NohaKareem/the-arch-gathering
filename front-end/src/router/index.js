@@ -5,14 +5,11 @@ import Architecture from "../views/Architecture.vue";
 import Architects from "../views/Architects.vue";
 import API from "../views/API.vue";
 import Login from "../views/Login.vue";
+import Register from "../views/Register.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "*",
-    redirect: '/'
-  }, //~
   {
     path: "/", 
     redirect: "/architectures"
@@ -43,10 +40,19 @@ const routes = [
     component: Login
   },
   {
+    path: "/register",
+    name: "Register",
+    component: Register
+  },
+  {
     path: "/about",
     name: "About",
     component: () =>
       import("../views/About.vue")
+  }, 
+  {
+    path: "*",
+    redirect: '/'
   }
 ];
 
