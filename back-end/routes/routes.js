@@ -119,6 +119,14 @@ router.get("/check", (req, res) => {
   }
 });
 
+// facebook
+router.get('/auth/facebook', passport.authenticate('facebook'));
+
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: AUTHENTICATED_ROUTE,
+  failureRedirect: '/login'
+}));
+
 // helper method
 function handleErr(err) {
   if(err) return next(err);

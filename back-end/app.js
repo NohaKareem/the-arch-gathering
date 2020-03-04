@@ -12,7 +12,14 @@ var User = require('./models/User.js');
 var flash = require('connect-flash');
 var passport = require('passport');
 var expressSession = require('express-session');
+
+// passport 
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var FACEBOOK_APP_ID = '1699158153703160';
+var FACEBOOK_APP_SECRET = '88d2e6724b1feaa30629bd08feb09554';
+
+var favicon = require('serve-favicon');
 
 var app = express();
 
@@ -59,6 +66,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+// facbeook
+passport.use(new FacebookStrategy({
+  clientID: FACEBOOK_APP_ID,
+  clientSecret: FACEBOOK_APP_SECRET,
+  callbackURL: 'http://localhost:3000/auth/facebook/callback',
+  profileFields: ['id','displayName','photos']
+}, function(accessToken, refreshToken, profile, done) {
+  process.nextTick(function() {
+    //Assuming user exists
+    //console.log(profile.displayName);
+    //user = profile.displayName;
+    //console.log(profile.photos[0].value);
+    done(null, profile);
+  });
+}));
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -72,6 +95,8 @@ app.use((req, res, next) => {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use(logger('dev'));
 app.use(express.json());
