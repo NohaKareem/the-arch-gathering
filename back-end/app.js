@@ -1,6 +1,4 @@
-// db init. data
-// import { DB_AUTH, DB_NAME } from './config.js';
-var dbAuth = require('./config.js');
+var dbAuth = require('./config.js'); // atlas db credentials
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -25,7 +23,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 // allowing cors, from https://github.com/rkpattnaik780/passport-mevn-app/blob/master/server/app.js
 var corsOption = {
   origin: true,
@@ -35,7 +32,6 @@ var corsOption = {
 };
 
 var cors = require("cors");
-// app.use(cors());
 app.use(cors(corsOption));
 app.use(cors())
 
@@ -53,11 +49,10 @@ function(err) {
 	}
 });
 
-// sessions https://stackoverflow.com/a/51540685
+// sessions resave https://stackoverflow.com/a/51540685
 app.use(expressSession({ secret: 'sessionEncryptionKey', 
   resave: true,//false, 
   saveUninitialized: true, 
-  
   // cookie: { secure: true }
   key: 'sid' }));
 app.use(passport.initialize());
@@ -67,9 +62,6 @@ app.use(flash());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
 
 app.use((req, res, next) => {
   res.header("Acess-Control-Allow-Origin", "*");
@@ -87,8 +79,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
 app.use('/api', APIRouter);
 app.use('/', indexRouter);
 

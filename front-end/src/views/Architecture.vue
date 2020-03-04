@@ -181,20 +181,26 @@
 
   @media screen and (min-width: $desktopWidth) {
         .detailImage {
-            width: 35vw;
-            height: 35vw;
+            width: 30vw;
+            height: 30vw;
             object-fit: cover;
         }
 
         .container.architecture {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            grid-column-gap: 20vw;
+            grid-column-gap: 17vw;
             
             .detailsCon {
                 margin-left: 10vw;
                 width: 35vw;
             }
+        }
+
+        .imageCon {
+            display: grid;
+            grid-template-columns: 0.25fr 2fr;
+            margin-right: 20px;
         }
 
   }
