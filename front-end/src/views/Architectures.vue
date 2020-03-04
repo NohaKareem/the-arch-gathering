@@ -10,11 +10,11 @@
           </router-link>
         </transition>
 
-        <h1>
+        <p class="architectureName">
             <router-link :to="`/architectures/${architecture._id}`" class="linkText">
                 {{ architecture.name }}
             </router-link>
-        </h1>
+        </p>
       </div>
     </div>
   </div>
@@ -81,6 +81,10 @@
     }
   }
   
+  .architectureName {
+    width: $mblWidth;
+  }
+
   .listThumb {
       width: $mblWidth;
       height: 350px;
@@ -112,9 +116,13 @@
     .architectureListCon {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       // margin: 0 auto;
-      // .architectureCon {
-      //   width: $ImgDsktpWidth;
-      // }
+      .architectureCon {
+        width: $ImgDsktpWidth;
+      }
+    }
+
+    .architectureName {
+      width: $ImgDsktpWidth;
     }
 
     .listThumb {
