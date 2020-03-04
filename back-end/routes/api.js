@@ -10,39 +10,20 @@ function isLoggedIn(req, res, next) {
 	if(req.isAuthenticated()) {
 		return next();
 	}
-  // return res.redirect('/');
-  res.sendFile((path.join(__dirname, '../views', 'index.ejs')));
+  return res.redirect('/');
+  // res.sendFile((path.join(__dirname, '../views', 'index.ejs')));
 }
 
-          // // protect all API routes
-          // router.get('*', isLoggedIn, function(req, res, next) {
-          //   // console.log(req.user.username);
-          //   // console.log(req.user._id);
-          //   console.log(req.path)
-          //   // res.redirect(req.path);
-          //   if (req.path === '/architectures') {
-          //     Architecture.find((err, architectures) => {//~
-          //       handleErr(err);
-          //       res.json(architectures);
-          //     }).sort({ name: 'asc' });
-          //   }
-          //   return next();
-
-          
-          //   // res.render('protected', {title:'profile page', name:req.user.username});
-          // });
-
-/* GET API routes */
 // GET all architectures
-router.get('/architectures', function(req, res, next) {
-  Architecture.find((err, architectures) => {
-    handleErr(err);
-    res.json(architectures);
-  }).sort({ name: 'asc' });
-});
+router.get('/architectures', isLoggedIn, function(req, res, next) {
+    Architecture.find((err, architectures) => {//~
+      handleErr(err);
+      res.json(architectures);
+    }).sort({ name: 'asc' });
+  });
 
 // GET one architectures with given id
-router.get('/architectures/:id', function(req, res, next) {
+router.get('/architectures/:id', isLoggedIn, function(req, res, next) {
   Architecture.find({ _id: req.params.id }, (err, architecture) => {
     handleErr(err);
     res.json(architecture);
@@ -50,7 +31,7 @@ router.get('/architectures/:id', function(req, res, next) {
 });
 
 // GET one architect with given id
-router.get('/architects/:id', function(req, res, next) {
+router.get('/architects/:id', isLoggedIn, function(req, res, next) {
   Architect.find({ _id: req.params.id }, (err, architect) => {
     handleErr(err);
     res.json(architect);
@@ -58,7 +39,7 @@ router.get('/architects/:id', function(req, res, next) {
 });
 
 // GET all architects
-router.get('/architects', function(req, res, next) {
+router.get('/architects', isLoggedIn, function(req, res, next) {
   Architect.find((err, architects) => {
     handleErr(err);
     res.json(architects);
@@ -66,7 +47,7 @@ router.get('/architects', function(req, res, next) {
 });
 
 // GET all architectures by an architect
-router.get('/architects/:id/architectures', function(req, res, next) {
+router.get('/architects/:id/architectures', isLoggedIn, function(req, res, next) {
   Architecture.find({ architects: req.params.id }, (err, architectures) => {
     handleErr(err);
     res.json(architectures);

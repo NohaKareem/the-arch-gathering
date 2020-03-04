@@ -9,7 +9,7 @@ var User = require('../models/User.js');
 var ejs = require('ejs'); 
 // var fs = require('fs').readFileSync(path.join(__dirname, '../views', 'index.ejs'), 'utf-8');//https://stackoverflow.com/a/8660718/1446598
 
-const AUTH_ROUTE = '/architectures'; //~
+const AUTH_ROUTE = 'api/architectures'; //~
 
 // GET about page
 router.get('/about', function(req, res, next) {
@@ -79,13 +79,16 @@ router.post('/login', passport.authenticate('local'), function(req, res, next) {
 	if(!req.user) {
 		res.redirect('/');
 	}
+  // res.redirect(AUTH_ROUTE); //~~
   res.redirect(AUTH_ROUTE); //~~
+  return next();//~~~
 });
 
 router.post('/register', function(req, res, next) {
 	User.register(new User({
 		username:req.body.username,
-		email:req.body.email }),
+    email:req.body.email 
+  }),
 		req.body.password,
 
 		function(err, user) {
@@ -95,7 +98,8 @@ router.post('/register', function(req, res, next) {
       
       // automatically logs in any new user
       passport.authenticate('local')(req, res, function() {
-        res.redirect(AUTH_ROUTE);
+        // res.redirect(AUTH_ROUTE);
+        return next();
       });
     });
 });

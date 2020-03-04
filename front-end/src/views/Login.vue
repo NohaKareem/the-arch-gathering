@@ -4,10 +4,10 @@
         <img src="static/login.jpg" alt="login image" class="loginImage">
         <div class="overlay">
             <h1 class="overlayText">Log<span class="contrast">in</span></h1>
-            <form action="login" method="post">
-                <input type="text" placeholder="username"> 
+            <form action="http://localhost:3000/login" method="post">
+                <input type="text" name="username" placeholder="username"> 
                 <br>
-                <input type="text" placeholder="password">
+                <input type="password" name="password" placeholder="password">
                 <input type="submit" value="Log In">
             </form>
         </div>
