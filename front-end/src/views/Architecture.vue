@@ -13,13 +13,13 @@
         <hr>
         <div class="commentSection">
             <h3 class="italic">Conversation</h3>
-            ~comments
-            <h2> Add a comment~</h2>
+            comments
+            <h2> Add a comment</h2>
             <form :action="`/architecture/${architecture._id}/new/comment`" ref="addComment" method="post" enctype="multipart/form-data">
                 <textarea name="comment" id="commentTextArea" cols="50" rows="10" placeholder="type your comment here"></textarea>
                 <button type="button" class="linkText" id="commentButton" @click="addComment()">
                     <!-- <router-link to="#" class="linkText" id="commentButton"> -->
-                    +add comment ~
+                    +add comment 
                     <!-- </router-link> -->
                 </button>
            </form>
@@ -29,13 +29,15 @@
         <div class="addToFavesButton">
             <hr>
                 <router-link to="#">
-                    +~ 
+                    +
                     <br>
                     add to favorites
                 </router-link>
             <hr>
         </div>
+      <transition name="appearTransition" appear>
         <img :src="`/static/${architecture.image}`" :alt="`${architecture.name} image`" class="detailImage">
+      </transition>
     </div>    
   </div>
 </template>

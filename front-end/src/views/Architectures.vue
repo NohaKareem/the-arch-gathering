@@ -1,14 +1,13 @@
 <template>
   <div class="container">
-      <transition name="appearTransition" appear>
         <div class="architectureListCon" v-if="loggedIn">
           <div class="architectureCon" v-for="architecture in architectures" :key="architecture._id">
             <!-- <transition-group name="appearTransition" tag="a" appear> -->
-              <!-- <transition name="hoverImage"> -->
+             <transition name="appearTransition" appear>
                 <router-link :to="`/architectures/${architecture._id}`" class="linkImage">
                   <img :src="`/static/${architecture.image}`" :alt="`${architecture.name} image`" class="listThumb" @mouseover="enableTransitions()">
                 </router-link>
-              <!-- </transition> -->
+              </transition>
 
               <p class="architectureName">
                   <router-link :to="`/architectures/${architecture._id}`" class="linkText">
@@ -19,7 +18,6 @@
           </div>
         </div>
         <login v-else/>
-      </transition>
   </div>
 </template>
 
@@ -104,41 +102,23 @@
     filter: grayscale(90%);
   }
 
-  // .architectureListCon:last-child {
-  // }
-
-
-
   // transitions
   .appearTransition-enter-active, .appearTransition-leave-active {
-  transition: all 2s ease-in-out;//steps(3,start);
-}
-.appearTransition-enter, .appearTransition-leave-to {
-  opacity: 0;
-  filter: grayscale(100%);
-}
-.appearTransition-enter-to, .appearTransition-leave {
-  opacity: 1;
-  filter: grayscale(0%);
-}
-  // .hoverImage-enter, .hoverImage-leave-to {
-  //   filter: grayscale(0%);
-  //     // opacity: 0;
-  //     // transform: rotateY(50deg);
-  // }
-
-  // .hoverImage-enter-to, .hoverImage-leave {
-  //   filter: grayscale(90%);
-  // }
-
-  // .hoverImage-enter-active, .hoverImage-leave-active {
-  //   transition: filter 300ms ease-in;
-  // }
-
+    transition: all 2s ease-in-out;//steps(3,start);
+  }
+  .appearTransition-enter, .appearTransition-leave-to {
+    opacity: 0;
+    filter: grayscale(100%);
+  }
+  .appearTransition-enter-to, .appearTransition-leave {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+  
   @media screen and (min-width: $desktopWidth) {
     .architectureListCon {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      // margin: 0 auto;
+
       .architectureCon {
         width: $ImgDsktpWidth;
       }
