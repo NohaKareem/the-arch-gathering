@@ -108,6 +108,34 @@
 
 <style lang="scss">
   @import '@/styles/globalStyles.scss';
+    
+    // button 
+    hr:last-child {
+        margin-top: 20px;
+    }
+
+    // layout
+    .container.architecture {
+        display: flex;
+        flex-direction: column;
+    }
+    .imageCon {
+        order: -1;
+        display: flex;
+        flex-direction: row;
+        .addToFavesButton {
+            margin-right: auto;
+            left: 0;
+            position: absolute;
+            // align-self: flex-start; 
+            // height: 115px;
+            margin-top: 15px;
+        }
+        img {
+            margin-left: auto;
+            margin-right: -30px;
+        }
+    }
 
     .detailImage {
         width: 55vw;
@@ -121,7 +149,6 @@
         width: 100px;
         padding-left: 5px;
         padding-right: 5px;
-
         a { 
             text-decoration: none;
             color: black;
@@ -137,6 +164,10 @@
 
         a {
             color: $sandyRose;
+        }
+
+        hr {
+            visibility: hidden;
         }
     }
 
@@ -198,10 +229,26 @@
         }
 
         .imageCon {
+            order: 1;
+
             display: grid;
             grid-template-columns: 0.25fr 2fr;
+            margin-left: 20px;
             margin-right: 20px;
         }
 
+        .addToFavesButton {
+            // undo mobie styling
+            margin-right: unset !important;
+            left: unset !important;
+            position: unset !important;
+
+            // apply desktop styling
+            height: 115px;
+            margin-top: 15px;
+            hr:first-child {
+                margin-top: -10px;
+            }
+        }
   }
 </style>
