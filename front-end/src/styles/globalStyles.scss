@@ -14,7 +14,13 @@ body {
     font-family: 'Cormorant Garamond', sans-serif;
     background-color: $sandyRose;
     font-size: 3.7vw;
+    // min-height: 100%;
 } 
+
+// #app {
+//     display:flex; 
+//     flex-direction:column; 
+// }
 
 .linkText {
     text-decoration: none;
@@ -95,7 +101,9 @@ $aboutImgWidthDsktop: 600px;
 footer {
     margin-top: 20px;
     background-color: $sandyRose;
-    // position: absolute;
+    height: 30px;
+    width: 100vw;
+    position: fixed;
     bottom: 0;
     margin-left: 2vw;
     font-size: 20px;
