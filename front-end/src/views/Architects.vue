@@ -31,7 +31,6 @@
       },
       created: function() {
         var self = this;
-        // var id = this.$route.params.id;
 
         // get all architects
         axios.get('http://localhost:3000/api/architects', {

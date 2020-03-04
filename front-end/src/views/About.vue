@@ -14,7 +14,6 @@
         axios.get('http://localhost:3000/about')
           .then(function(response) {
             // console.log(response);
-
             let pageCon = document.querySelector('.about');
             pageCon.innerHTML = response.data;
           })

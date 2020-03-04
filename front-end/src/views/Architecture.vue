@@ -91,7 +91,6 @@
       }, 
       methods: {
           addComment() {
-                console.log('in add comment')
                 const formData = new FormData(this.$refs.addComment);
                 console.log(formData);
                 let self = this;

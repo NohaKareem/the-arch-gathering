@@ -8,19 +8,13 @@ $h1FontSize: 25px;
 $h2FontSize: 23px;
 $menuFontSize: 25px;
 
-$desktopWidth: 830px;//768px;
+$desktopWidth: 830px;
 
 body {
     font-family: 'Cormorant Garamond', sans-serif;
     background-color: $sandyRose;
     font-size: 3.7vw;
-    // min-height: 100%;
 } 
-
-// #app {
-//     display:flex; 
-//     flex-direction:column; 
-// }
 
 .linkText {
     text-decoration: none;
@@ -176,7 +170,6 @@ footer {
             font-size: 10vw;
             margin-bottom: 6vw;
             color: $sandyRose;
-            // text-decoration: underline;
             border-bottom: 1vw $sandyRose solid;
         }
     
