@@ -6,25 +6,21 @@ var mongoose = require('mongoose');
 var Architecture = require('../models/Architecture.js');
 var User = require('../models/User.js');
 
-var ejs = require('ejs'); 
-// var fs = require('fs').readFileSync(path.join(__dirname, '../views', 'index.ejs'), 'utf-8');//https://stackoverflow.com/a/8660718/1446598
-
-const AUTH_ROUTE = 'api/architectures'; //~
+const AUTH_ROUTE = 'api/architectures';
 
 // GET about page
 router.get('/about', function(req, res, next) {
-  // pathing https://stackoverflow.com/a/25463996/1446598
   res.sendFile((path.join(__dirname, '../views', 'about.ejs')));
 });
 
-// GET architectures, redirect to architecture.ejs
-router.get('/architectures', function(req, res, next) {
-  Architecture.find((err, architectures) => {
-    handleErr(err);
-    // res.json(architectures);
-    res.render('architectures', { title: 'Architecture', architectures:architectures });
-  });
-});
+  // // GET architectures, redirect to architecture.ejs
+  // router.get('/architectures', function(req, res, next) {
+  //   Architecture.find((err, architectures) => {
+  //     handleErr(err);
+  //     // res.json(architectures);
+  //     res.render('architectures', { title: 'Architecture', architectures:architectures });
+  //   });
+  // });
 
 // POST a comment to architecture
 router.post('/architecture/:id/new/comment', function(req, res, next) {
@@ -63,6 +59,7 @@ router.post('/architecture/:id/new/comment', function(req, res, next) {
 //   });
 // });
 
+// authentication routes
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Log In', message: req.flash('message') }); //~login form
 });

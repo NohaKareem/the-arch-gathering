@@ -7,7 +7,7 @@ var Architect = require('../models/Architect.js');
 var User = require('../models/User.js');
 
 function isLoggedIn(req, res, next) {
-	if(req.isAuthenticated()) {
+	if(req.user) {
 		return next();
 	}
   return res.redirect('/');
