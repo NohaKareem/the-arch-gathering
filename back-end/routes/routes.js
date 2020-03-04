@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Architecture = require('../models/Architecture.js');
 var User = require('../models/User.js');
 
-const AUTH_ROUTE = 'http://localhost:8080/';//'api/architectures'; // redirect to front-end index
+const AUTHENTICATED_ROUTE = 'http://localhost:8080/';//'api/architectures'; // redirect to front-end index
 
 // GET about page
 router.get('/about', function(req, res, next) {
@@ -65,7 +65,9 @@ router.get('/', function(req, res, next) {
 });
 
 // router.get('/register', function(req, res, next) {
-//   res.render('register_form', { title: 'Register', message: req.flash('message') });//~register form
+//   res.sendFile((path.join(__dirname, '../views', 'register.ejs')), { user:user, message: req.flash('message') }); 
+
+//   // res.render('register_form', { title: 'Register', message: req.flash('message') });//~register form
 // });
 
 // router.get('/home', function(req, res, next) {
@@ -76,8 +78,8 @@ router.post('/login', passport.authenticate('local'), function(req, res, next) {
 	if(!req.user) {
 		res.redirect('/');
 	}
-  // res.redirect(AUTH_ROUTE); //~~
-  res.redirect(AUTH_ROUTE); //~~
+  // res.redirect(AUTHENTICATED_ROUTE); //~~
+  res.redirect(AUTHENTICATED_ROUTE); //~~
   return next();//~~~
 });
 
@@ -89,13 +91,16 @@ router.post('/register', function(req, res, next) {
 		req.body.password,
 
 		function(err, user) {
-      if (err) {
-        res.render('register_form', {title: 'Register', user:user, message: req.flash('message') });//~
+      if (err) { //~redirect
+        // res.sendFile((path.join(__dirname, '../views', 'register.ejs')), { user:user, message: req.flash('message') });
+        res.send({ user:user, message: req.flash('message') });
+
+        // res.render('register_form', {title: 'Register', user:user, message: req.flash('message') });//~
       }
       
       // automatically logs in any new user
       passport.authenticate('local')(req, res, function() {
-        // res.redirect(AUTH_ROUTE);
+        // res.redirect(AUTHENTICATED_ROUTE);
         return next();
       });
     });
@@ -103,8 +108,8 @@ router.post('/register', function(req, res, next) {
 
 // checking if user is registered. test method from https://blog.zairza.in/oauth-using-mevn-stack-4b4a383dae08
 router.get("/check", (req, res) => {
-  console.log("user - " + req.user);
-  console.log(req.session.passport);
+  // console.log("user - " + req.user);
+  // console.log(req.session.passport);
   if (req.user === undefined) {
     res.json({});
   } else {

@@ -150,11 +150,13 @@ footer {
     }
 
     .registerCon, .overlay {
-        margin-left: calc(15px + 45vw); /*~var*/
+        margin-left: calc(15px + 45vw);
     }
     
     .registerCon {
        margin-bottom: 40px;
+       font-size: 30px;
+       width: 50vw;
     }
 
     .registrationForm input[type=text], .registrationForm input[type=password] {
