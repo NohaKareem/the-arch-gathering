@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container architecture">
     <login v-if="!loggedIn"/>
 
     <div class="detailsCon" v-else>
@@ -186,7 +186,7 @@
             object-fit: cover;
         }
 
-        .container {
+        .container.architecture {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             grid-column-gap: 20vw;

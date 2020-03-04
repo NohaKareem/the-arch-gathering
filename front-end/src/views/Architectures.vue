@@ -111,10 +111,10 @@
   @media screen and (min-width: $desktopWidth) {
     .architectureListCon {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-            
-      .architectureCon {
-        width: $ImgDsktpWidth;
-      }
+      // margin: 0 auto;
+      // .architectureCon {
+      //   width: $ImgDsktpWidth;
+      // }
     }
 
     .listThumb {
