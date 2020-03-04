@@ -65,7 +65,7 @@
             // if server sends a message (requiring login), mark loggedIn as false
             self.loggedIn = (response .data.msg) ? false : true;
             
-            //   console.log(response.data)
+              console.log(response.data[0])
             self.architecture = response.data[0];
             
             // console.log(response.data[0].architects)
