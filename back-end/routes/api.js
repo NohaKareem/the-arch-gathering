@@ -6,15 +6,13 @@ var Architecture = require('../models/Architecture.js');
 var Architect = require('../models/Architect.js');
 var User = require('../models/User.js');
 
-const LOGIN_ROUTE = 'http://localhost:8080/#/login';//'api/architectures'; // redirect to front-end index
+const LOGIN_ROUTE = 'http://localhost:8080/#/login'; // redirect to front-end index
 
 function isLoggedIn(req, res, next) {
 	if(req.user) {//isAuthenticated()
 		return next();
   }
   return  res.json({ msg: 'need to login' });
-  // return res.redirect(LOGIN_ROUTE); //~ '/'
-  // res.sendFile((path.join(__dirname, '../views', 'index.ejs')));
 }
 
 // GET all architectures
