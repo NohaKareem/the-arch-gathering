@@ -17,7 +17,9 @@
             </form>
         </div>
         <div class="registerCon">
-             <p>already a member? <router-link to="login" class="linkText">login</router-link> </p>
+            <p>already a member? <router-link to="login" class="linkText">login</router-link> </p>
+              <br>
+            <a href="http://localhost:3000/auth/facebook" class="linkText">login through facebook</a> 
         </div>
     </div>
   </div>
