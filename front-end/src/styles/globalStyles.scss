@@ -143,37 +143,52 @@ footer {
     .loginImage {
         margin-left: 20px;
         margin-top: 10px;
-        width: 70vw;
-        height: 90vh;
+        width: 60vw;
+        height: 70vh;
         object-fit: cover;
         /* height: 100px; */
     }
 
+    .registerCon, .overlay {
+        margin-left: calc(15px + 45vw); /*~var*/
+    }
     .overlay {
         position: absolute;
         margin-top: -40vh;
-        margin-left: calc(15px + 54vw); /*~var*/
-        /*~overlay text && input */
+
         .overlayText {
             font-size: 10vw;
+            margin-bottom: 6vw;
             color: $sandyRose;
-            /* text-decoration: underline; */
+            // text-decoration: underline;
             border-bottom: 1vw $sandyRose solid;
         }
     
-        input{
+        input {
             margin-bottom: 10px;
             border: none;
             padding: 5px;
-            background-color: #EEE5DC; /*~var*/
+            background-color: $sandyRose; /*~var*/
+        }
+
+        input[type=submit] {
+            cursor: pointer;
+        }
+        
+        input[type=submit]:hover {
+            background-color: black;
+            color: $sandyRose;
+        }
+
+        .contrast {
+            color: black;
+            // margin-bottom: 5vw;
+            /* margin-left: -5px; */
+            border-bottom: 1vw black solid; /*~var*/ 
         }
     }
     
-    .contrast {
-        color: black;
-        /* margin-left: -5px; */
-        border-bottom: 1vw black solid; /*~var*/ 
-    }
+  
 }
 
 

@@ -4,6 +4,7 @@ import Architectures from "../views/Architectures.vue";
 import Architecture from "../views/Architecture.vue";
 import Architects from "../views/Architects.vue";
 import API from "../views/API.vue";
+import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,11 @@ const routes = [
     path: "/api",
     name: "API",
     component: API
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login
   },
   {
     path: "/about",
