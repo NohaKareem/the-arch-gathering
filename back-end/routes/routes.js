@@ -60,11 +60,11 @@ router.post('/register', function(req, res, next) {
 		req.body.password,
 
 		function(err, user) {
-      if (err) { 
+      if (err) {
         // res.sendFile((path.join(__dirname, '../views', 'register.ejs')), { user:user, message: req.flash('message') });
         res.send({ user:user, message: req.flash('message') });
       }
-      
+
       // automatically logs in any new user
       passport.authenticate('local')(req, res, function() {
         // res.redirect(AUTHENTICATED_ROUTE);

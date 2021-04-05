@@ -39,7 +39,7 @@
         })
           .then(function(response) {
             // if server sends a message (requiring login), mark loggedIn as false
-            self.loggedIn = (response .data.msg) ? false : true;
+            self.loggedIn = (response.data.msg) ? false : true;
 
             self.architects = response.data;
 

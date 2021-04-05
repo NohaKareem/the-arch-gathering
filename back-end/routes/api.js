@@ -9,22 +9,22 @@ var User = require('../models/User.js');
 const LOGIN_ROUTE = 'http://localhost:8080/#/login'; // redirect to front-end index
 
 function isLoggedIn(req, res, next) {
-	if(req.user) {//isAuthenticated()
-		return next();
+  if (req.user) {//isAuthenticated()
+    return next();
   }
-  return  res.json({ msg: 'need to login' });
+  return res.json({ msg: 'need to login' });
 }
 
 // GET all architectures
-router.get('/architectures', isLoggedIn, function(req, res, next) {
-    Architecture.find((err, architectures) => {//~
-      handleErr(err);
-      res.json(architectures);
-    }).sort({ name: 'asc' });
-  });
+router.get('/architectures', isLoggedIn, function (req, res, next) {
+  Architecture.find((err, architectures) => {//~
+    handleErr(err);
+    res.json(architectures);
+  }).sort({ name: 'asc' });
+});
 
 // GET one architectures with given id
-router.get('/architectures/:id', isLoggedIn, function(req, res, next) {
+router.get('/architectures/:id', isLoggedIn, function (req, res, next) {
   Architecture.find({ _id: req.params.id }, (err, architecture) => {
     handleErr(err);
     res.json(architecture);
@@ -32,7 +32,7 @@ router.get('/architectures/:id', isLoggedIn, function(req, res, next) {
 });
 
 // GET all architects
-router.get('/architects', isLoggedIn, function(req, res, next) {
+router.get('/architects', isLoggedIn, function (req, res, next) {
   Architect.find((err, architects) => {
     handleErr(err);
     res.json(architects);
@@ -40,7 +40,7 @@ router.get('/architects', isLoggedIn, function(req, res, next) {
 });
 
 // GET one architect with given id
-router.get('/architects/:id', isLoggedIn, function(req, res, next) {
+router.get('/architects/:id', isLoggedIn, function (req, res, next) {
   Architect.find({ _id: req.params.id }, (err, architect) => {
     handleErr(err);
     res.json(architect);
@@ -48,7 +48,7 @@ router.get('/architects/:id', isLoggedIn, function(req, res, next) {
 });
 
 // GET all architectures by an architect
-router.get('/architects/:id/architectures', isLoggedIn, function(req, res, next) {
+router.get('/architects/:id/architectures', isLoggedIn, function (req, res, next) {
   Architecture.find({ architects: req.params.id }, (err, architectures) => {
     handleErr(err);
     res.json(architectures);
@@ -57,7 +57,7 @@ router.get('/architects/:id/architectures', isLoggedIn, function(req, res, next)
 
 // helper method
 function handleErr(err) {
-  if(err) return next(err);
+  if (err) return next(err);
 }
 
 module.exports = router;

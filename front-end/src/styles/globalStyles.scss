@@ -112,6 +112,9 @@ footer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    .fa {
+        padding-right: 50px;
+    }
     a {
         text-decoration: none;
         color: black;
@@ -194,16 +197,16 @@ footer {
             color: black;
             // margin-bottom: 5vw;
             /* margin-left: -5px; */
-            border-bottom: 1vw black solid; 
+            border-bottom: 1vw black solid;
+            margin-top: -0.25px !important;
+            position: absolute;
         }
     }
 
     .overlay.register {
         margin-top: -60vh;
-        margin-left: calc(15px + 44vw); 
-    }
-    
-  
+        margin-left: calc(23px + 44vw); 
+    } 
 }
 
 
